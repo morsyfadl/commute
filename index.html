@@ -366,9 +366,12 @@ const DEFAULT_ITEMS = {
   ]
 };
 
-let items      = JSON.parse(localStorage.getItem(ITEMS_KEY))  || structuredClone(DEFAULT_ITEMS);
-let savedState = JSON.parse(localStorage.getItem(STATE_KEY))  || {};
-let editMode   = false;
+const COLLAPSE_KEY = 'commuteCollapseV9';
+
+let items         = JSON.parse(localStorage.getItem(ITEMS_KEY))    || structuredClone(DEFAULT_ITEMS);
+let savedState    = JSON.parse(localStorage.getItem(STATE_KEY))    || {};
+let collapseState = JSON.parse(localStorage.getItem(COLLAPSE_KEY)) || {}; // true = collapsed
+let editMode      = false;
 
 function makeId(html) {
   const d = document.createElement('div');
@@ -376,8 +379,9 @@ function makeId(html) {
   return (d.textContent || d.innerText).replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
 }
 function persist() {
-  localStorage.setItem(STATE_KEY, JSON.stringify(savedState));
-  localStorage.setItem(ITEMS_KEY, JSON.stringify(items));
+  localStorage.setItem(STATE_KEY,    JSON.stringify(savedState));
+  localStorage.setItem(ITEMS_KEY,    JSON.stringify(items));
+  localStorage.setItem(COLLAPSE_KEY, JSON.stringify(collapseState));
 }
 
 // ─── RENDER ─────────────────────────────────────────
@@ -387,7 +391,13 @@ function renderChecklist() {
 
   for (const [category, tasks] of Object.entries(items)) {
     const details = document.createElement('details');
-    details.open = true;
+    details.open = !collapseState[category]; // default open unless saved as collapsed
+
+    // Save open/closed state when user toggles
+    details.addEventListener('toggle', () => {
+      collapseState[category] = !details.open;
+      localStorage.setItem(COLLAPSE_KEY, JSON.stringify(collapseState));
+    });
 
     // Category edit row
     const editRow = document.createElement('div');
@@ -683,8 +693,22 @@ function resetChecklist() {
 }
 
 // ─── SYNC MODAL ─────────────────────────────────────
+// btoa/atob only handle ASCII — encode via UTF-8 bytes to survive emojis
+function toSyncCode(obj) {
+  const json  = JSON.stringify(obj);
+  const bytes = new TextEncoder().encode(json);
+  let binary  = '';
+  bytes.forEach(b => binary += String.fromCharCode(b));
+  return btoa(binary);
+}
+function fromSyncCode(code) {
+  const binary = atob(code);
+  const bytes  = Uint8Array.from(binary, c => c.charCodeAt(0));
+  return JSON.parse(new TextDecoder().decode(bytes));
+}
+
 function openSyncModal() {
-  document.getElementById('exportCode').value = btoa(JSON.stringify({ items, state: savedState }));
+  document.getElementById('exportCode').value = toSyncCode({ items, state: savedState });
   document.getElementById('exportMsg').textContent = '';
   document.getElementById('importMsg').textContent = '';
   document.getElementById('importCode').value = '';
@@ -699,18 +723,30 @@ function switchSyncTab(tab) {
   });
 }
 function copyCode() {
-  navigator.clipboard.writeText(document.getElementById('exportCode').value).then(() => {
-    const msg = document.getElementById('exportMsg');
+  const code = document.getElementById('exportCode').value;
+  const msg  = document.getElementById('exportMsg');
+  const showOk = () => {
     msg.className = 'sync-message';
     msg.textContent = '✅ Copied to clipboard!';
     setTimeout(() => msg.textContent = '', 2500);
-  });
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(code).then(showOk).catch(() => fallbackCopy(code, showOk));
+  } else {
+    fallbackCopy(code, showOk);
+  }
+}
+function fallbackCopy(text, onSuccess) {
+  const ta = document.getElementById('exportCode');
+  ta.select();
+  ta.setSelectionRange(0, 99999);
+  try { document.execCommand('copy'); onSuccess(); } catch {}
 }
 function importCode() {
   const raw = document.getElementById('importCode').value.trim();
   const msg = document.getElementById('importMsg');
   try {
-    const payload = JSON.parse(atob(raw));
+    const payload = fromSyncCode(raw);
     if (!payload.items || !payload.state) throw new Error();
     items = payload.items; savedState = payload.state;
     persist(); renderChecklist();
