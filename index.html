@@ -42,60 +42,11 @@
     }
 
     /* ─── HEADER ─────────────────────────────── */
-    .header {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    h1 {
-      font-size: 1.7em;
-      font-weight: 700;
-      margin: 0 0 2px;
-      color: var(--text);
-    }
-    .subtitle {
-      color: var(--text-secondary);
-      font-size: 0.88em;
-      margin: 0 0 16px;
-    }
+    .header { text-align: center; margin-bottom: 24px; }
+    h1 { font-size: 1.7em; font-weight: 700; margin: 0 0 2px; color: var(--text); }
+    .subtitle { color: var(--text-secondary); font-size: 0.88em; margin: 0; }
 
-    /* ─── TOP TOOLBAR ─────────────────────────── */
-    .toolbar {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-    .toolbar-btn {
-      flex: 1;
-      min-width: 0;
-      padding: 10px 12px;
-      border: 1.5px solid var(--border);
-      background: var(--card);
-      border-radius: 10px;
-      font-size: 0.85em;
-      font-weight: 600;
-      cursor: pointer;
-      color: var(--text-secondary);
-      transition: all 0.15s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      white-space: nowrap;
-    }
-    .toolbar-btn:active { transform: scale(0.97); }
-    .toolbar-btn.active {
-      background: var(--edit-bg);
-      border-color: var(--edit-border);
-      color: #92400e;
-    }
-    .toolbar-btn.danger {
-      border-color: #fecaca;
-      color: var(--red);
-      background: #fff5f5;
-    }
-
-    /* ─── EDIT MODE BANNER ───────────────────── */
+    /* ─── EDIT BANNER ────────────────────────── */
     .edit-banner {
       display: none;
       background: var(--edit-bg);
@@ -104,46 +55,21 @@
       padding: 10px 14px;
       font-size: 0.85em;
       color: #92400e;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       text-align: center;
     }
     body.edit-mode .edit-banner { display: block; }
 
-    .restore-btn {
-      display: none;
-      width: 100%;
-      padding: 11px;
-      margin-bottom: 16px;
-      background: #fff7ed;
-      border: 1.5px solid #fb923c;
-      border-radius: 10px;
-      color: #c2410c;
-      font-size: 0.88em;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.15s;
-    }
-    .restore-btn:hover { background: #ffedd5; }
-    body.edit-mode .restore-btn { display: block; }
-
     /* ─── SYNC MODAL ──────────────────────────── */
     .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.45);
-      z-index: 100;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.45); z-index: 100;
+      align-items: center; justify-content: center; padding: 16px;
     }
     .modal-overlay.open { display: flex; }
     .modal {
-      background: var(--card);
-      border-radius: 16px;
-      padding: 24px;
-      width: 100%;
-      max-width: 460px;
+      background: var(--card); border-radius: 16px; padding: 24px;
+      width: 100%; max-width: 460px;
       box-shadow: 0 20px 60px rgba(0,0,0,0.2);
     }
     .modal h2 { margin: 0 0 6px; font-size: 1.2em; }
@@ -155,157 +81,118 @@
       font-size: 0.85em; font-weight: 600; color: var(--text-secondary);
       transition: all 0.15s;
     }
-    .sync-tab.active {
-      background: var(--primary-light);
-      border-color: var(--primary);
-      color: var(--primary);
-    }
+    .sync-tab.active { background: var(--primary-light); border-color: var(--primary); color: var(--primary); }
     .sync-panel { display: none; }
     .sync-panel.active { display: block; }
     .sync-code-box {
-      width: 100%;
-      background: #f1f5f9;
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      padding: 10px 12px;
-      font-family: monospace;
-      font-size: 0.82em;
-      resize: none;
-      height: 90px;
-      color: var(--text);
+      width: 100%; background: #f1f5f9; border: 1.5px solid var(--border);
+      border-radius: 8px; padding: 10px 12px; font-family: monospace;
+      font-size: 0.82em; resize: none; height: 90px; color: var(--text);
     }
     .sync-code-box:focus { outline: 2px solid var(--primary); }
     .modal-actions { display: flex; gap: 8px; margin-top: 14px; }
     .btn {
-      flex: 1; padding: 11px;
-      border: none; border-radius: 9px;
-      font-size: 0.9em; font-weight: 600;
-      cursor: pointer; transition: all 0.15s;
+      flex: 1; padding: 11px; border: none; border-radius: 9px;
+      font-size: 0.9em; font-weight: 600; cursor: pointer; transition: all 0.15s;
     }
     .btn:active { transform: scale(0.97); }
     .btn-primary { background: var(--primary); color: #fff; }
     .btn-primary:hover { background: var(--primary-dark); }
     .btn-ghost { background: #f1f5f9; color: var(--text-secondary); }
     .btn-ghost:hover { background: var(--border); }
-    .sync-message {
-      font-size: 0.82em;
-      margin-top: 8px;
-      min-height: 18px;
-      color: var(--green);
-      font-weight: 500;
-    }
+    .sync-message { font-size: 0.82em; margin-top: 8px; min-height: 18px; color: var(--green); font-weight: 500; }
     .sync-message.error { color: var(--red); }
 
     /* ─── CATEGORIES ──────────────────────────── */
     details { margin-bottom: 14px; }
     summary.category {
-      font-size: 1.1em;
-      font-weight: 700;
-      padding: 6px 0;
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      list-style: none;
-      user-select: none;
-      outline: none;
+      font-size: 1.1em; font-weight: 700; padding: 6px 0; color: var(--primary);
+      display: flex; align-items: center; gap: 8px;
+      cursor: pointer; list-style: none; user-select: none; outline: none;
     }
     summary.category::-webkit-details-marker { display: none; }
     summary.category::after {
-      content: '▼';
-      font-size: 0.65em;
-      margin-left: auto;
-      color: var(--muted);
-      transition: transform 0.25s;
+      content: '▼'; font-size: 0.65em; margin-left: auto; color: var(--muted); transition: transform 0.25s;
     }
     details[open] summary.category::after { transform: rotate(180deg); }
-
     .category-tick { display: none; color: var(--green); font-size: 1em; }
     .category-completed .category-title { text-decoration: line-through; color: var(--muted); }
     .category-completed .category-tick { display: inline; }
     .category-progress {
-      font-size: 0.75em;
-      color: var(--muted);
-      background: #e2e8f0;
-      padding: 2px 8px;
-      border-radius: 12px;
-      font-weight: 600;
-      margin-right: 10px;
+      font-size: 0.75em; color: var(--muted); background: #e2e8f0;
+      padding: 2px 8px; border-radius: 12px; font-weight: 600; margin-right: 10px;
     }
 
     /* ─── CHECKLIST ITEMS ─────────────────────── */
     .checklist-item {
-      background: var(--card);
-      margin-bottom: 8px;
-      padding: 14px 16px;
-      border-radius: 11px;
-      display: flex;
-      align-items: center;
+      background: var(--card); margin-bottom: 8px; padding: 14px 16px;
+      border-radius: 11px; display: flex; align-items: center;
       box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-      transition: all 0.15s ease;
-      border: 1.5px solid var(--border);
-      cursor: pointer;
-      gap: 12px;
+      transition: box-shadow 0.15s, transform 0.15s, opacity 0.15s;
+      border: 1.5px solid var(--border); cursor: pointer; gap: 12px;
     }
     .checklist-item:active { transform: scale(0.985); }
-    .checklist-item.checked {
-      background: #f8fafc;
-      border-color: #dde3ef;
-    }
+    .checklist-item.checked { background: #f8fafc; border-color: #dde3ef; }
     input[type="checkbox"] {
-      width: 20px; height: 20px;
-      flex-shrink: 0;
-      accent-color: var(--primary);
-      pointer-events: none;
-      cursor: pointer;
+      width: 20px; height: 20px; flex-shrink: 0;
+      accent-color: var(--primary); pointer-events: none; cursor: pointer;
     }
-    .item-label {
-      font-size: 1em;
-      flex-grow: 1;
-      line-height: 1.4;
-      pointer-events: none;
-      user-select: none;
-    }
+    .item-label { font-size: 1em; flex-grow: 1; line-height: 1.4; pointer-events: none; user-select: none; }
     .checked .item-label { text-decoration: line-through; color: var(--muted); }
-    .important-note {
-      font-size: 0.82em; color: var(--red); font-weight: 500;
-      margin-left: 4px; white-space: nowrap;
-    }
+    .important-note { font-size: 0.82em; color: var(--red); font-weight: 500; margin-left: 4px; white-space: nowrap; }
     .optional-note { color: var(--purple); font-size: 0.88em; font-weight: 500; }
-    .checked .important-note,
-    .checked .optional-note { color: var(--muted); }
+    .checked .important-note, .checked .optional-note { color: var(--muted); }
 
-    /* ─── EDIT MODE ITEM STYLES ───────────────── */
-    body.edit-mode .checklist-item {
-      cursor: default;
-      padding: 10px 12px;
-    }
+    /* ─── EDIT MODE ───────────────────────────── */
+    body.edit-mode .checklist-item { cursor: default; padding: 10px 12px; }
     body.edit-mode .checklist-item:active { transform: none; }
     body.edit-mode input[type="checkbox"] { display: none; }
 
+    .drag-handle {
+      display: none; flex-shrink: 0;
+      width: 28px; height: 28px;
+      align-items: center; justify-content: center;
+      color: var(--muted); font-size: 1.15em;
+      cursor: grab; touch-action: none;
+      border-radius: 5px; transition: background 0.1s, color 0.1s;
+      user-select: none;
+    }
+    .drag-handle:hover { background: #f1f5f9; color: var(--primary); }
+    .drag-handle:active { cursor: grabbing; }
+    body.edit-mode .drag-handle { display: flex; }
+
+    .checklist-item.dragging { opacity: 0.3; box-shadow: none; }
+    .checklist-item.drag-over {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px var(--primary-light);
+      transform: scale(1.01);
+    }
+
+    #drag-ghost {
+      position: fixed; pointer-events: none; z-index: 999;
+      opacity: 0.95; border-radius: 11px;
+      background: var(--card); border: 2px solid var(--primary);
+      box-shadow: 0 8px 30px rgba(37,99,235,0.2);
+      padding: 10px 14px; display: flex; align-items: center; gap: 10px;
+      font-family: inherit; font-size: 1em; color: var(--text);
+      transform: rotate(1deg);
+      white-space: nowrap; overflow: hidden;
+      max-width: 90vw;
+    }
+
     .item-edit-input {
-      display: none;
-      flex-grow: 1;
-      border: 1.5px solid var(--edit-border);
-      border-radius: 7px;
-      padding: 6px 10px;
-      font-size: 0.95em;
-      font-family: inherit;
-      background: #fff;
-      color: var(--text);
-      outline: none;
+      display: none; flex-grow: 1;
+      border: 1.5px solid var(--edit-border); border-radius: 7px;
+      padding: 6px 10px; font-size: 0.95em; font-family: inherit;
+      background: #fff; color: var(--text); outline: none;
     }
     .item-edit-input:focus { border-color: var(--primary); }
     body.edit-mode .item-label { display: none; }
     body.edit-mode .item-edit-input { display: block; }
 
     .item-delete-btn {
-      display: none;
-      width: 28px; height: 28px;
-      flex-shrink: 0;
-      background: #fee2e2;
-      border: none; border-radius: 6px;
+      display: none; width: 28px; height: 28px; flex-shrink: 0;
+      background: #fee2e2; border: none; border-radius: 6px;
       color: var(--red); font-size: 1.1em;
       cursor: pointer; align-items: center; justify-content: center;
       transition: background 0.15s;
@@ -313,85 +200,69 @@
     .item-delete-btn:hover { background: #fecaca; }
     body.edit-mode .item-delete-btn { display: flex; }
 
-    /* ─── ADD ITEM / ADD CATEGORY BUTTONS ─────── */
+    /* ─── ADD ITEM / CATEGORY ─────────────────── */
     .add-item-btn {
-      display: none;
-      width: 100%;
-      padding: 10px 16px;
-      margin-bottom: 8px;
-      background: transparent;
-      border: 1.5px dashed var(--edit-border);
-      border-radius: 11px;
-      color: #92400e;
-      font-size: 0.88em; font-weight: 600;
-      cursor: pointer;
-      transition: background 0.15s;
+      display: none; width: 100%; padding: 10px 16px; margin-bottom: 8px;
+      background: transparent; border: 1.5px dashed var(--edit-border);
+      border-radius: 11px; color: #92400e;
+      font-size: 0.88em; font-weight: 600; cursor: pointer; transition: background 0.15s;
     }
     .add-item-btn:hover { background: var(--edit-bg); }
     body.edit-mode .add-item-btn { display: block; }
 
-    .category-edit-row {
-      display: none;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
+    .category-edit-row { display: none; align-items: center; gap: 8px; margin-bottom: 12px; }
     body.edit-mode .category-edit-row { display: flex; }
 
     .category-name-input {
-      flex-grow: 1;
-      border: 1.5px solid var(--edit-border);
-      border-radius: 7px;
-      padding: 7px 10px;
-      font-size: 0.95em; font-weight: 700;
-      font-family: inherit;
-      color: var(--primary);
-      background: var(--edit-bg);
+      flex-grow: 1; border: 1.5px solid var(--edit-border); border-radius: 7px;
+      padding: 7px 10px; font-size: 0.95em; font-weight: 700;
+      font-family: inherit; color: var(--primary); background: var(--edit-bg);
     }
     .category-name-input:focus { outline: none; border-color: var(--primary); }
 
     .cat-delete-btn {
-      padding: 7px 10px;
-      background: #fee2e2;
-      border: none; border-radius: 7px;
-      color: var(--red); font-size: 0.82em; font-weight: 600;
-      cursor: pointer; white-space: nowrap;
+      padding: 7px 10px; background: #fee2e2; border: none; border-radius: 7px;
+      color: var(--red); font-size: 0.82em; font-weight: 600; cursor: pointer; white-space: nowrap;
     }
     .cat-delete-btn:hover { background: #fecaca; }
 
     .add-category-btn {
-      display: none;
-      width: 100%;
-      padding: 12px;
-      margin-top: 8px;
-      background: transparent;
-      border: 2px dashed var(--edit-border);
-      border-radius: 12px;
-      color: #92400e;
-      font-size: 0.92em; font-weight: 700;
-      cursor: pointer;
-      transition: background 0.15s;
+      display: none; width: 100%; padding: 12px; margin-top: 8px;
+      background: transparent; border: 2px dashed var(--edit-border);
+      border-radius: 12px; color: #92400e;
+      font-size: 0.92em; font-weight: 700; cursor: pointer; transition: background 0.15s;
     }
     .add-category-btn:hover { background: var(--edit-bg); }
     body.edit-mode .add-category-btn { display: block; }
 
-    /* ─── BOTTOM BUTTONS ──────────────────────── */
-    .bottom-actions {
-      margin-top: 28px;
-      display: flex;
-      gap: 10px;
+    /* ─── BOTTOM ACTIONS ──────────────────────── */
+    .bottom-actions { margin-top: 28px; display: flex; flex-direction: column; gap: 10px; }
+    .bottom-row { display: flex; gap: 10px; }
+
+    .action-btn {
+      flex: 1; padding: 14px 12px;
+      border: 1.5px solid var(--border); background: var(--card);
+      border-radius: 12px; font-size: 0.92em; font-weight: 600;
+      cursor: pointer; color: var(--text-secondary);
+      transition: all 0.15s;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
     }
+    .action-btn:active { transform: scale(0.97); }
+    .action-btn.edit-active { background: var(--edit-bg); border-color: var(--edit-border); color: #92400e; }
+
+    .restore-btn {
+      display: none; width: 100%; padding: 13px;
+      background: #fff7ed; border: 1.5px solid #fb923c; border-radius: 12px;
+      color: #c2410c; font-size: 0.92em; font-weight: 600;
+      cursor: pointer; transition: background 0.15s;
+    }
+    .restore-btn:hover { background: #ffedd5; }
+    body.edit-mode .restore-btn { display: block; }
+
     .reset-btn {
-      flex: 1;
-      padding: 15px;
-      background: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-size: 1em;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.15s;
+      width: 100%; padding: 15px; background: var(--primary); color: white;
+      border: none; border-radius: 12px; font-size: 1em; font-weight: 600;
+      cursor: pointer; transition: background 0.15s;
     }
     .reset-btn:hover { background: var(--primary-dark); }
   </style>
@@ -403,21 +274,20 @@
   <p class="subtitle">Alexandria ↔ Cairo</p>
 </div>
 
-<div class="toolbar">
-  <button class="toolbar-btn" id="editToggleBtn" onclick="toggleEditMode()">✏️ Edit List</button>
-  <button class="toolbar-btn" onclick="openSyncModal()">🔄 Sync Code</button>
-</div>
-
 <div class="edit-banner">
-  ✏️ <strong>Edit Mode On</strong> — rename items, add or delete entries, then tap <strong>Edit List</strong> again to save.
+  ✏️ <strong>Edit Mode</strong> — drag <strong>⠿</strong> to reorder, tap items to rename, ✕ to delete.
 </div>
-<button class="restore-btn" onclick="restoreDefaults()">↩️ Restore Default List</button>
 
 <div id="checklist"></div>
 
 <button class="add-category-btn" onclick="addCategory()">＋ Add New Category</button>
 
 <div class="bottom-actions">
+  <div class="bottom-row">
+    <button class="action-btn" id="editToggleBtn" onclick="toggleEditMode()">✏️ Edit List</button>
+    <button class="action-btn" onclick="openSyncModal()">🔄 Sync Code</button>
+  </div>
+  <button class="restore-btn" onclick="restoreDefaults()">↩️ Restore Default List</button>
   <button class="reset-btn" onclick="resetChecklist()">🗑 Clear All for Next Trip</button>
 </div>
 
@@ -449,12 +319,17 @@
   </div>
 </div>
 
-<script>
-// ─── STORAGE KEY ────────────────────────────────────
-const STATE_KEY  = 'commuteStateV9';
-const ITEMS_KEY  = 'commuteItemsV9';
+<!-- DRAG GHOST (floating card that follows your finger) -->
+<div id="drag-ghost" style="display:none;">
+  <span style="color:var(--muted)">⠿</span>
+  <span id="drag-ghost-text"></span>
+</div>
 
-// ─── DEFAULT ITEMS ──────────────────────────────────
+<script>
+// ─── STORAGE ────────────────────────────────────────
+const STATE_KEY = 'commuteStateV9';
+const ITEMS_KEY = 'commuteItemsV9';
+
 const DEFAULT_ITEMS = {
   "🧳 Duffle Bag": [
     "🩲 Boxers & Underwear",
@@ -491,21 +366,18 @@ const DEFAULT_ITEMS = {
   ]
 };
 
-// ─── STATE ──────────────────────────────────────────
 let items      = JSON.parse(localStorage.getItem(ITEMS_KEY))  || structuredClone(DEFAULT_ITEMS);
 let savedState = JSON.parse(localStorage.getItem(STATE_KEY))  || {};
 let editMode   = false;
 
-// ─── HELPERS ────────────────────────────────────────
 function makeId(html) {
   const d = document.createElement('div');
   d.innerHTML = html;
   return (d.textContent || d.innerText).replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
 }
-
 function persist() {
-  localStorage.setItem(STATE_KEY,  JSON.stringify(savedState));
-  localStorage.setItem(ITEMS_KEY,  JSON.stringify(items));
+  localStorage.setItem(STATE_KEY, JSON.stringify(savedState));
+  localStorage.setItem(ITEMS_KEY, JSON.stringify(items));
 }
 
 // ─── RENDER ─────────────────────────────────────────
@@ -517,7 +389,7 @@ function renderChecklist() {
     const details = document.createElement('details');
     details.open = true;
 
-    // Category edit row (shown only in edit mode)
+    // Category edit row
     const editRow = document.createElement('div');
     editRow.className = 'category-edit-row';
     const catInput = document.createElement('input');
@@ -534,7 +406,7 @@ function renderChecklist() {
     editRow.appendChild(catDelBtn);
     details.appendChild(editRow);
 
-    // Summary header
+    // Summary
     const summary = document.createElement('summary');
     summary.className = 'category';
     summary.innerHTML = `
@@ -544,13 +416,13 @@ function renderChecklist() {
     `;
     details.appendChild(summary);
 
-    // Items
+    // Items list
     const contentDiv = document.createElement('div');
+    contentDiv.dataset.category = category;
     tasks.forEach((taskHTML, idx) => {
       contentDiv.appendChild(buildItem(category, taskHTML, idx));
     });
 
-    // Add item button (edit mode only)
     const addBtn = document.createElement('button');
     addBtn.className = 'add-item-btn';
     addBtn.textContent = '＋ Add Item';
@@ -566,11 +438,16 @@ function renderChecklist() {
 
 function buildItem(category, taskHTML, idx) {
   const id = makeId(taskHTML);
-
   const div = document.createElement('div');
   div.className = `checklist-item ${savedState[id] ? 'checked' : ''}`;
   div.dataset.category = category;
-  div.dataset.idx = idx;
+  div.dataset.idx = String(idx);
+
+  // ── Drag handle
+  const handle = document.createElement('div');
+  handle.className = 'drag-handle';
+  handle.textContent = '⠿';
+  initDragHandle(handle, div);
 
   const cb = document.createElement('input');
   cb.type = 'checkbox';
@@ -583,7 +460,6 @@ function buildItem(category, taskHTML, idx) {
   const editInput = document.createElement('input');
   editInput.type = 'text';
   editInput.className = 'item-edit-input';
-  // Strip HTML for editing to keep it plain
   const tmp = document.createElement('div');
   tmp.innerHTML = taskHTML;
   editInput.value = tmp.textContent || tmp.innerText;
@@ -603,6 +479,7 @@ function buildItem(category, taskHTML, idx) {
     updateStats();
   });
 
+  div.appendChild(handle);
   div.appendChild(cb);
   div.appendChild(label);
   div.appendChild(editInput);
@@ -610,35 +487,121 @@ function buildItem(category, taskHTML, idx) {
   return div;
 }
 
+// ─── DRAG TO REORDER ────────────────────────────────
+let drag = null;
+const ghost     = document.getElementById('drag-ghost');
+const ghostText = document.getElementById('drag-ghost-text');
+
+function initDragHandle(handle, itemEl) {
+  handle.addEventListener('touchstart', e => {
+    if (!editMode) return;
+    e.preventDefault();
+    startDrag(itemEl, e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive: false });
+
+  handle.addEventListener('touchmove', e => {
+    if (!drag) return;
+    e.preventDefault();
+    moveDrag(e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive: false });
+
+  handle.addEventListener('touchend', e => {
+    if (!drag) return;
+    e.preventDefault();
+    endDrag();
+  }, { passive: false });
+
+  handle.addEventListener('mousedown', e => {
+    if (!editMode) return;
+    e.preventDefault();
+    startDrag(itemEl, e.clientX, e.clientY);
+  });
+}
+
+document.addEventListener('mousemove', e => { if (drag) moveDrag(e.clientX, e.clientY); });
+document.addEventListener('mouseup',   e => { if (drag) endDrag(); });
+
+function startDrag(itemEl, cx, cy) {
+  const category = itemEl.dataset.category;
+  const idx      = parseInt(itemEl.dataset.idx);
+  const rect     = itemEl.getBoundingClientRect();
+
+  // Set ghost text from label
+  const tmp = document.createElement('div');
+  tmp.innerHTML = items[category][idx] || '';
+  ghostText.textContent = tmp.textContent || tmp.innerText;
+
+  ghost.style.display = 'flex';
+  ghost.style.width   = Math.min(rect.width, window.innerWidth * 0.9) + 'px';
+  placeGhost(cx, cy);
+
+  itemEl.classList.add('dragging');
+
+  drag = { itemEl, category, idx, currentOver: null };
+}
+
+function placeGhost(cx, cy) {
+  const w = parseInt(ghost.style.width) || 280;
+  ghost.style.left = Math.max(4, cx - w / 2) + 'px';
+  ghost.style.top  = (cy - 24) + 'px';
+}
+
+function moveDrag(cx, cy) {
+  placeGhost(cx, cy);
+
+  // Temporarily hide ghost to hit-test underneath
+  ghost.style.visibility = 'hidden';
+  const target = document.elementFromPoint(cx, cy);
+  ghost.style.visibility = 'visible';
+
+  const overItem = target ? target.closest('.checklist-item') : null;
+
+  if (drag.currentOver && drag.currentOver !== overItem) {
+    drag.currentOver.classList.remove('drag-over');
+    drag.currentOver = null;
+  }
+
+  if (overItem && overItem !== drag.itemEl && overItem.dataset.category === drag.category) {
+    overItem.classList.add('drag-over');
+    drag.currentOver = overItem;
+  }
+}
+
+function endDrag() {
+  ghost.style.display = 'none';
+  drag.itemEl.classList.remove('dragging');
+
+  if (drag.currentOver) {
+    drag.currentOver.classList.remove('drag-over');
+    const toIdx = parseInt(drag.currentOver.dataset.idx);
+    const arr = items[drag.category];
+    const [moved] = arr.splice(drag.idx, 1);
+    arr.splice(toIdx, 0, moved);
+    persist();
+    renderChecklist();
+    if (editMode) document.body.classList.add('edit-mode');
+  }
+
+  drag = null;
+}
+
 // ─── STATS ──────────────────────────────────────────
 function updateStats() {
-  const container = document.getElementById('checklist');
-  const detailsEls = container.querySelectorAll('details');
-  let catIndex = 0;
-
+  const detailsEls = document.getElementById('checklist').querySelectorAll('details');
+  let i = 0;
   for (const [category, tasks] of Object.entries(items)) {
-    const details = detailsEls[catIndex++];
+    const details = detailsEls[i++];
     if (!details) break;
-    const summary = details.querySelector('summary');
+    const summary      = details.querySelector('summary');
     const progressSpan = summary.querySelector('.category-progress');
-
     let reqTotal = 0, reqDone = 0, totalDone = 0;
-    tasks.forEach(taskHTML => {
-      const id = makeId(taskHTML);
-      const done = savedState[id] || false;
+    tasks.forEach(h => {
+      const done = savedState[makeId(h)] || false;
       if (done) totalDone++;
-      if (!taskHTML.includes('Optional)')) {
-        reqTotal++;
-        if (done) reqDone++;
-      }
+      if (!h.includes('Optional)')) { reqTotal++; if (done) reqDone++; }
     });
-
     if (progressSpan) progressSpan.textContent = `${totalDone}/${tasks.length}`;
-    if (reqTotal > 0 && reqDone === reqTotal) {
-      summary.classList.add('category-completed');
-    } else {
-      summary.classList.remove('category-completed');
-    }
+    summary.classList.toggle('category-completed', reqTotal > 0 && reqDone === reqTotal);
   }
 }
 
@@ -647,21 +610,15 @@ function toggleEditMode() {
   editMode = !editMode;
   document.body.classList.toggle('edit-mode', editMode);
   const btn = document.getElementById('editToggleBtn');
-  btn.classList.toggle('active', editMode);
+  btn.classList.toggle('edit-active', editMode);
   btn.textContent = editMode ? '✅ Done Editing' : '✏️ Edit List';
-  if (!editMode) {
-    // Save all inline edits on exit
-    persist();
-  }
+  if (!editMode) persist();
 }
 
 function saveItemEdit(category, idx, newText) {
   if (!newText.trim()) return;
   items[category][idx] = newText.trim();
-  persist();
-  // Re-render to rebuild IDs etc.
-  renderChecklist();
-  // Keep edit mode on
+  persist(); renderChecklist();
   document.body.classList.add('edit-mode');
 }
 
@@ -669,22 +626,18 @@ function renameCategoryHandler(input) {
   const oldName = input.dataset.originalCat;
   const newName = input.value.trim();
   if (!newName || newName === oldName) return;
-  if (items[newName]) { input.value = oldName; return; } // already exists
-
-  const entries = Object.entries(items);
+  if (items[newName]) { input.value = oldName; return; }
   const newItems = {};
-  entries.forEach(([k, v]) => { newItems[k === oldName ? newName : k] = v; });
+  Object.entries(items).forEach(([k, v]) => { newItems[k === oldName ? newName : k] = v; });
   items = newItems;
-  persist();
-  renderChecklist();
+  persist(); renderChecklist();
   document.body.classList.add('edit-mode');
 }
 
 function deleteItem(category, idx) {
   if (!confirm('Delete this item?')) return;
   items[category].splice(idx, 1);
-  persist();
-  renderChecklist();
+  persist(); renderChecklist();
   document.body.classList.add('edit-mode');
 }
 
@@ -692,16 +645,14 @@ function addItem(category) {
   const text = prompt('New item text:');
   if (!text || !text.trim()) return;
   items[category].push(text.trim());
-  persist();
-  renderChecklist();
+  persist(); renderChecklist();
   document.body.classList.add('edit-mode');
 }
 
 function deleteCategory(category) {
   if (!confirm(`Delete entire category "${category}"?`)) return;
   delete items[category];
-  persist();
-  renderChecklist();
+  persist(); renderChecklist();
   document.body.classList.add('edit-mode');
 }
 
@@ -710,74 +661,59 @@ function addCategory() {
   if (!name || !name.trim()) return;
   if (items[name.trim()]) { alert('A category with that name already exists.'); return; }
   items[name.trim()] = [];
-  persist();
-  renderChecklist();
+  persist(); renderChecklist();
   document.body.classList.add('edit-mode');
 }
 
-// ─── RESTORE DEFAULTS ───────────────────────────────
 function restoreDefaults() {
-  if (confirm('Restore the original default list? This will replace all your custom edits (checked state is kept where possible).')) {
+  if (confirm('Restore the original default list? Your custom edits and checked state will be cleared.')) {
     items = structuredClone(DEFAULT_ITEMS);
     savedState = {};
-    persist();
-    renderChecklist();
+    persist(); renderChecklist();
     document.body.classList.add('edit-mode');
   }
 }
 
-// ─── RESET ──────────────────────────────────────────
 function resetChecklist() {
   if (confirm('Clear all checkmarks for the next trip?')) {
     savedState = {};
-    persist();
-    renderChecklist();
+    persist(); renderChecklist();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
 
 // ─── SYNC MODAL ─────────────────────────────────────
 function openSyncModal() {
-  const payload = { items, state: savedState };
-  document.getElementById('exportCode').value = btoa(JSON.stringify(payload));
+  document.getElementById('exportCode').value = btoa(JSON.stringify({ items, state: savedState }));
   document.getElementById('exportMsg').textContent = '';
   document.getElementById('importMsg').textContent = '';
   document.getElementById('importCode').value = '';
   document.getElementById('syncModal').classList.add('open');
   switchSyncTab('export');
 }
-
-function closeSyncModal() {
-  document.getElementById('syncModal').classList.remove('open');
-}
-
+function closeSyncModal() { document.getElementById('syncModal').classList.remove('open'); }
 function switchSyncTab(tab) {
-  document.getElementById('exportTab').classList.toggle('active', tab === 'export');
-  document.getElementById('importTab').classList.toggle('active', tab === 'import');
-  document.getElementById('exportPanel').classList.toggle('active', tab === 'export');
-  document.getElementById('importPanel').classList.toggle('active', tab === 'import');
+  ['export','import'].forEach(t => {
+    document.getElementById(t+'Tab').classList.toggle('active', t === tab);
+    document.getElementById(t+'Panel').classList.toggle('active', t === tab);
+  });
 }
-
 function copyCode() {
-  const code = document.getElementById('exportCode').value;
-  navigator.clipboard.writeText(code).then(() => {
+  navigator.clipboard.writeText(document.getElementById('exportCode').value).then(() => {
     const msg = document.getElementById('exportMsg');
     msg.className = 'sync-message';
     msg.textContent = '✅ Copied to clipboard!';
     setTimeout(() => msg.textContent = '', 2500);
   });
 }
-
 function importCode() {
   const raw = document.getElementById('importCode').value.trim();
   const msg = document.getElementById('importMsg');
   try {
     const payload = JSON.parse(atob(raw));
     if (!payload.items || !payload.state) throw new Error();
-    items = payload.items;
-    savedState = payload.state;
-    persist();
-    renderChecklist();
+    items = payload.items; savedState = payload.state;
+    persist(); renderChecklist();
     msg.className = 'sync-message';
     msg.textContent = '✅ List imported successfully!';
     setTimeout(closeSyncModal, 1500);
@@ -786,19 +722,16 @@ function importCode() {
     msg.textContent = '❌ Invalid code. Please try copying again.';
   }
 }
-
-// Close modal on overlay click
 document.getElementById('syncModal').addEventListener('click', function(e) {
   if (e.target === this) closeSyncModal();
 });
 
-// ─── PWA SERVICE WORKER ──────────────────────────────
+// ─── PWA ────────────────────────────────────────────
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.js')
-    .catch(err => console.warn('SW registration failed:', err));
+    .catch(err => console.warn('SW:', err));
 }
 
-// ─── INIT ────────────────────────────────────────────
 renderChecklist();
 </script>
 </body>
